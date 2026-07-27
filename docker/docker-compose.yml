@@ -1,0 +1,30 @@
+services:
+  claude-agent:
+    build: .
+    # Host networking is required so this container can reach the Claude
+    # Code Chrome extension relay running on the host (needed by
+    # star-strava-routes). This trades away network-namespace isolation —
+    # filesystem and credential isolation below are unaffected: the
+    # container still only ever sees its own two secrets directories and
+    # its own named volumes, nothing else on the host filesystem.
+    network_mode: host
+    environment:
+      - GIT_USER_NAME=${GIT_USER_NAME:-}
+      - GIT_USER_EMAIL=${GIT_USER_EMAIL:-}
+      - ROGUE_RUNNER_FORK_URL=${ROGUE_RUNNER_FORK_URL:-}
+    volumes:
+      - ${HOME}/agent-secrets/static:/run/secrets/static:rw
+      - ${HOME}/agent-secrets/tokens:/run/secrets/tokens:rw
+      - rogue-runner-agent-home:/home/agent
+      - rogue-runner-workspace:/workspace
+    # Not /workspace/rogue-runner-kit: on a fresh volume that path doesn't
+    # exist yet, and Docker would auto-create it as root before entrypoint.sh
+    # (running as the non-root `agent` user) gets a chance to clone into it —
+    # entrypoint.sh does its own `cd` there once the clone is done instead.
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+
+volumes:
+  rogue-runner-agent-home:
+  rogue-runner-workspace:
