@@ -118,10 +118,10 @@ offer_session_picker() {
 }
 
 SELECTED_SESSION_ID=""
-if [ "${1:-}" = "claude" ] && [ "$#" -eq 1 ]; then
+if [ "${1:-}" = "claude" ]; then
   offer_session_picker
   if [ -n "$SELECTED_SESSION_ID" ]; then
-    set -- "$1" --resume "$SELECTED_SESSION_ID"
+    set -- "$@" --resume "$SELECTED_SESSION_ID"
   fi
 fi
 

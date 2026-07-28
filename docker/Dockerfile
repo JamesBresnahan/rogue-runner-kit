@@ -29,4 +29,4 @@ RUN chmod +x /entrypoint.sh
 USER agent
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["claude"]
+CMD ["claude", "--chrome"]

@@ -59,4 +59,4 @@ docker compose -f docker/docker-compose.yml --env-file "$ENV_FILE" build
 
 echo
 echo "Starting Claude..."
-exec docker compose -f docker/docker-compose.yml --env-file "$ENV_FILE" run --rm claude-agent claude
+exec docker compose -f docker/docker-compose.yml --env-file "$ENV_FILE" run --rm claude-agent claude --chrome
