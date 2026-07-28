@@ -58,12 +58,36 @@ conversationally.
    name/email for commits) and then build and start everything.
 4. It'll hand you off to a guided setup conversation with Claude — just
    follow along. It walks you through connecting GitHub, Strava, and
-   Garmin one at a time, telling you exactly what to click and where.
+   Garmin one at a time, telling you exactly what to click and where. The
+   Garmin step needs one manual action in a second terminal — see
+   "Garmin login (one-time)" below.
 5. Once it says you're set up, paste your weekly coach email into the
    conversation any time you want that week's workouts built.
 
 Run `./setup.sh` again any time you want to start a new session — it
 remembers your setup and just launches from there.
+
+## Garmin login (one-time)
+
+The Garmin side needs one manual, one-time step the setup conversation
+can't do for you — it prompts for your Garmin email, password, and MFA
+code directly, and those should never be typed into the chat.
+
+1. Keep your `./setup.sh` session running. Open a **second terminal**, `cd`
+   into this repo's `docker/` directory, and run:
+   ```
+   docker compose exec claude-agent bash
+   ```
+2. Inside that shell, run:
+   ```
+   uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp garmin-mcp-auth
+   ```
+3. It'll prompt for your Garmin email, password, and MFA code (if you have
+   2FA on) right there in that terminal.
+4. MCP connections are only made when a session starts, so this won't take
+   effect in your *current* conversation — exit it and run `./setup.sh`
+   again to start a fresh one. The login is cached and persists across
+   restarts, so you only need to do this once, ever.
 
 ## Pace chart
 
