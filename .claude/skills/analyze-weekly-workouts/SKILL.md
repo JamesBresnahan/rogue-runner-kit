@@ -1,15 +1,15 @@
 ---
 name: analyze-weekly-workouts
-description: Use when the user wants to review how a completed week of training actually went against the plan (e.g. "how did last week go", "analyze my training", "compare planned vs actual pace"). Reads the confirmed spec from specs/weekly-workouts/, downloads the matching completed activities via the garmin MCP server, and writes a planned-vs-actual comparison to data/weekly-workouts/.
+description: Use when the user wants to review how a week of training actually went against the plan — a completed week or one still in progress (e.g. "how did last week go", "how's this week looking so far", "analyze my training", "compare planned vs actual pace"). Reads the confirmed spec from specs/weekly-workouts/, downloads the matching completed activities via the garmin MCP server, shows a planned-vs-actual comparison, and asks before saving it to data/weekly-workouts/ in git.
 ---
 
 # Analyzing a completed week's workouts
 
 Goal: for a week that's already been planned (a file exists in
-`specs/weekly-workouts/`) and has now finished, pull the runner's actual
-completed activities from Garmin Connect and compare them against what was
-planned — pace, distance, duration — and save that comparison to
-`data/weekly-workouts/`.
+`specs/weekly-workouts/`), whether it's finished or still in progress,
+pull the runner's actual completed activities from Garmin Connect and
+compare them against what was planned — pace, distance, duration — then
+offer to save that comparison to `data/weekly-workouts/`.
 
 This skill only reads from Garmin (activities, splits) — it never builds,
 schedules, or modifies a workout. That's `creating-garmin-workout`'s job,
@@ -23,21 +23,26 @@ Same check as `creating-garmin-workout` Step 1: confirm `garmin` tools
 then tell the user to re-run `garmin-mcp-auth` themselves if the refresh
 token is dead). Don't proceed to Step 2 until this succeeds.
 
-## Step 2 — Pick which week(s) to analyze
+## Step 2 — Pick which week to analyze
 
-List `specs/weekly-workouts/*.md`. A week is eligible once its Sunday has
-already passed (don't analyze a week still in progress). For each eligible
-spec file, check whether a same-named file already exists in
-`data/weekly-workouts/` — if so, it's already been analyzed; skip it
-unless the user explicitly asks to redo it.
+List `specs/weekly-workouts/*.md`. Any week whose Monday has arrived (its
+spec file exists) is a valid target — complete **or still in progress**.
+For a spec file that's already been analyzed (a same-named file already
+exists in `data/weekly-workouts/`), treat it as re-analyzable rather than
+skipping it outright: a prior in-progress run's file is expected to change
+as more days complete, so only flag it to the user as "already analyzed"
+when the target week is complete.
 
-- If the user named a specific week (a date, "last week", etc.), resolve
-  that to its spec file.
-- If exactly one eligible, not-yet-analyzed week exists, just use it.
-- If more than one is eligible and unanalyzed, ask the user which week(s)
-  to run rather than silently processing all of them — this is normally a
-  weekly cadence, so a backlog usually means something was skipped and is
-  worth surfacing rather than assuming.
+- If the user named a specific week/day/period (a date, "last week",
+  "this week", "today", etc.), resolve that to the corresponding spec
+  file — a single day resolves to the week containing it.
+- If the user didn't specify anything, **ask** which week/day/period to
+  analyze — do this even if only one spec file exists. Don't silently
+  default to "the one available week."
+- Once resolved, compare today's date to that week's Sunday to determine
+  whether the target week is **complete** or **in-progress**. Carry this
+  flag through — it doesn't gate anything in Steps 3-6, but Step 7 asks
+  about it explicitly either way.
 
 ## Step 3 — Read the spec
 
@@ -53,9 +58,15 @@ distinguishes (per `extract-workouts` Step 3's classification):
 
 ## Step 4 — Match each planned running day to a completed activity
 
-For each planned running day's date, call `get_activities_fordate(date)`
-(or `get_activities_by_date` narrowed to that single day) filtered to
-running.
+For each planned running day, first compare its date to today's date:
+
+- **Date is in the future** (only possible for an in-progress week): skip
+  the Garmin lookup entirely — there's nothing to match yet. Record it as
+  **not yet run**, distinct from a **missed** day below.
+- **Date is today or in the past**: continue as follows.
+
+Call `get_activities_fordate(date)` (or `get_activities_by_date` narrowed
+to that single day) filtered to running.
 
 - **Workout days**: a structured workout built by `creating-garmin-workout`
   and completed on the watch produces a Garmin Connect activity
@@ -111,30 +122,53 @@ speed_mps` = seconds per mile, format `M:SS`. For each planned segment
   (e.g. a rep hit pace but at a much higher HR than the rest).
 
 Also roll up a weekly total: planned weekly mileage vs. actual completed
-mileage (missed days count as 0 actual), and how many of the planned
-running days were completed vs. missed.
+mileage so far (both missed and not-yet-run days count as 0 actual, but
+keep them labeled separately — don't let "not yet run" read as a miss),
+and how many of the planned running days were completed, missed, or not
+yet run.
 
-## Step 7 — Write the analysis file
+## Step 7 — Write the file, show it, then ask about git
 
-Save to `data/weekly-workouts/MM-DD-YYYY.md`, same Monday-dated filename as
-the spec file it analyzes. Include:
+1. **Always write** the analysis to `data/weekly-workouts/MM-DD-YYYY.md`,
+   same Monday-dated filename as the spec file it analyzes — this is a
+   plain local file write, regardless of completeness and before any git
+   decision. For an in-progress week that's been analyzed before, this
+   overwrites the prior local version with the latest snapshot.
 
-- A per-day table: planned vs. actual distance and pace, delta, missed/
-  unplanned flags.
-- For each workout day, the phase-by-phase breakdown from Step 6 (mirroring
-  the Warm-up/Main set/Cool-down shape of the spec it's compared against).
-- The weekly mileage roll-up.
-- A short plain-language summary of what stands out (e.g. "MP reps ran
-  8-12 sec/mi faster than target," "missed Friday's easy run," "long run
-  cool-down drifted slow, likely fatigue").
+   Include in the file:
+   - A per-day table: planned vs. actual distance and pace, delta,
+     missed/not-yet-run/unplanned flags.
+   - For each workout day, the phase-by-phase breakdown from Step 6
+     (mirroring the Warm-up/Main set/Cool-down shape of the spec it's
+     compared against).
+   - The weekly mileage roll-up (through today, for an in-progress week).
+   - A short plain-language summary of what stands out (e.g. "MP reps ran
+     8-12 sec/mi faster than target," "missed Friday's easy run," "long
+     run cool-down drifted slow, likely fatigue").
 
-Commit and push just this one new/updated file to `origin main`. Check
-`git status`/`git diff --cached` first and stage only this file by path —
-don't sweep in unrelated pending changes in the repo.
+2. **Show the same analysis** in the chat response — don't make the user
+   open the file to see what was found.
+
+3. **Then ask**: "Would you like to save this analysis to git?" — ask this
+   every time, for both complete and in-progress weeks; completeness
+   doesn't change whether the question gets asked, only how the user is
+   likely to answer it (an in-progress week's file will keep changing as
+   more days complete, so they may reasonably say no until the week
+   finishes — but that's their call each time).
+   - **Yes**: check `git status`/`git diff --cached` first, stage only
+     this one file by path, commit, and push to `origin main`. Don't
+     sweep in unrelated pending changes in the repo.
+   - **No**: leave the file as an uncommitted local change. Don't commit
+     or push anything.
 
 ## Step 8 — Report back
 
-Summarize for the user: which week was analyzed, where the file was
-saved, the weekly mileage roll-up, and the two or three most notable
-planned-vs-actual findings. Flag any missed days or activities that
-couldn't be confidently matched.
+Summarize for the user: which week was analyzed (and whether it was
+complete or still in progress), where the file was saved, the weekly
+mileage roll-up, and the two or three most notable planned-vs-actual
+findings. Flag any missed days, not-yet-run days, or activities that
+couldn't be confidently matched. State plainly whether the file ended up
+committed+pushed or left as a local uncommitted change, based on the
+answer to Step 7's question — and for an in-progress week, mention that
+re-running the analysis later will overwrite this same local file as more
+days complete.
