@@ -66,6 +66,14 @@ if command -v claude >/dev/null 2>&1; then
   claude mcp remove garmin -s user >/dev/null 2>&1 || true
   claude mcp add garmin -s user -- uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp garmin-mcp \
     >/dev/null 2>&1 || echo "warning: failed to register garmin MCP server" >&2
+
+  # Same pattern for the weather MCP server (cmer81/open-meteo-mcp, npm
+  # package open-meteo-mcp-server). Open-Meteo's archive API is free and
+  # keyless, so unlike garmin there's no separate auth step — registration
+  # alone is enough. Base image is node:22-slim, so npx is already present.
+  claude mcp remove weather -s user >/dev/null 2>&1 || true
+  claude mcp add weather -s user -- npx -y -p open-meteo-mcp-server open-meteo-mcp-server \
+    >/dev/null 2>&1 || echo "warning: failed to register weather MCP server" >&2
 fi
 
 cd "$REPO_DIR"
