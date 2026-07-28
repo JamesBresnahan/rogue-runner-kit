@@ -6,25 +6,28 @@ services:
     # star-strava-routes). This trades away network-namespace isolation —
     # filesystem and credential isolation below are unaffected: the
     # container still only ever sees its own two secrets directories and
-    # its own named volumes, nothing else on the host filesystem.
+    # this one repo directory, nothing else on the host filesystem.
     network_mode: host
     environment:
       - GIT_USER_NAME=${GIT_USER_NAME:-}
       - GIT_USER_EMAIL=${GIT_USER_EMAIL:-}
-      - ROGUE_RUNNER_FORK_URL=${ROGUE_RUNNER_FORK_URL:-}
     volumes:
       - ${HOME}/agent-secrets/static:/run/secrets/static:rw
       - ${HOME}/agent-secrets/tokens:/run/secrets/tokens:rw
       - rogue-runner-agent-home:/home/agent
-      - rogue-runner-workspace:/workspace
-    # Not /workspace/rogue-runner-kit: on a fresh volume that path doesn't
-    # exist yet, and Docker would auto-create it as root before entrypoint.sh
-    # (running as the non-root `agent` user) gets a chance to clone into it —
-    # entrypoint.sh does its own `cd` there once the clone is done instead.
-    working_dir: /workspace
+      # Bind-mounts the user's own clone directly (this file always lives at
+      # <repo-root>/docker/docker-compose.yml, so ".." always resolves to
+      # the repo root regardless of where on their machine they cloned it —
+      # no path needs to be asked for or configured). This is deliberately
+      # a real bind mount, not a container-managed volume: it's what lets a
+      # non-technical user just drag a file (e.g. their pace-chart xlsx)
+      # into specs/resources/ in a normal Finder/Explorer window and have
+      # it show up inside the container immediately, no git or docker
+      # commands required.
+      - ..:/workspace/rogue-runner-kit:rw
+    working_dir: /workspace/rogue-runner-kit
     stdin_open: true
     tty: true
 
 volumes:
   rogue-runner-agent-home:
-  rogue-runner-workspace:

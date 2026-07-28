@@ -51,16 +51,12 @@ if ! grep -qF "$MARKER" "$BASHRC" 2>/dev/null; then
   } >> "$BASHRC"
 fi
 
-# Clone the user's own fork on first boot; the named workspace volume
-# persists it across later `docker compose run` invocations, so this only
-# actually clones once per volume, not once per launch.
+# $REPO_DIR is a bind mount of the user's own host clone (see
+# docker-compose.yml) — always already present, nothing to clone here.
 if [ ! -d "$REPO_DIR/.git" ]; then
-  if [ -z "${ROGUE_RUNNER_FORK_URL:-}" ]; then
-    echo "ROGUE_RUNNER_FORK_URL is not set and $REPO_DIR isn't already cloned." >&2
-    echo "Re-run setup.sh from the repo root on your host machine." >&2
-    exit 1
-  fi
-  git clone "$ROGUE_RUNNER_FORK_URL" "$REPO_DIR"
+  echo "$REPO_DIR doesn't look like a git repo — check docker-compose.yml's" >&2
+  echo "bind mount and that you're running this from inside your clone." >&2
+  exit 1
 fi
 
 # Register the garmin MCP server once, idempotently (remove then re-add so

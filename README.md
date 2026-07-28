@@ -54,8 +54,8 @@ conversationally.
    ```
    ./setup.sh
    ```
-   The first time, it'll ask a few quick questions (your repo's URL, your
-   name/email for commits) and then build and start everything.
+   The first time, it'll ask for your name/email (used for git commits)
+   and then build and start everything.
 4. It'll hand you off to a guided setup conversation with Claude — just
    follow along. It walks you through connecting GitHub, Strava, and
    Garmin one at a time, telling you exactly what to click and where. The
@@ -92,9 +92,13 @@ code directly, and those should never be typed into the chat.
 ## Pace chart
 
 The Rogue Running pace chart isn't included in this repo — it's the
-club's own material, not something we redistribute. When the setup
-conversation asks for it, save your own copy (the one you already have
-access to as a member) into `specs/resources/` in your repo.
+club's own material, not something we redistribute. `specs/resources/` is
+a normal folder inside the copy of this repo you cloned onto your own
+computer (the container sees that exact folder directly, not a separate
+copy) — when the setup conversation asks for it, just save or drag your
+own copy (the one you already have access to as a member) straight into
+`specs/resources/` from Finder/File Explorer. No git or terminal commands
+needed.
 
 ---
 
@@ -103,11 +107,14 @@ access to as a member) into `specs/resources/` in your repo.
 For the curious — none of this is required reading to get started.
 
 **Isolation model.** Everything runs inside a single Docker container,
-built fresh from this repo. It mounts only two things from your machine:
-`~/agent-secrets/{static,tokens}` (your own credentials, nothing else) and
-a couple of named Docker volumes for the container's own home directory
-and workspace. It never sees your Documents, Downloads, or any other
-project on your machine.
+built fresh from this repo. It mounts only three things from your machine:
+`~/agent-secrets/{static,tokens}` (your own credentials, nothing else),
+the clone of this repo you're running `setup.sh` from (a direct bind mount
+— what lets you drop files like the pace chart straight into
+`specs/resources/` in a normal Finder/Explorer window), and a Docker-
+managed volume for the container's own home directory (where things like
+your cached Garmin login persist). It never sees your Documents,
+Downloads, or any other project on your machine.
 
 **Credential storage.** Credentials are written to
 `~/agent-secrets/static/` (long-lived values like your GitHub PAT) or

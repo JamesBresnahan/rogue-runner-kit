@@ -1,1 +1,7 @@
 docker/.env
+.idea/
+
+# Rogue Running's own material — never committed/redistributed from this repo
+specs/resources/*.xlsx
+specs/resources/*PACE*
+specs/resources/*pace*

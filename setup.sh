@@ -30,19 +30,21 @@ fi
 mkdir -p "$HOME/agent-secrets/static" "$HOME/agent-secrets/tokens"
 chmod 700 "$HOME/agent-secrets" "$HOME/agent-secrets/static" "$HOME/agent-secrets/tokens"
 
+if [ ! -d .git ]; then
+  echo "This doesn't look like a git repo. Make sure you cloned your own fork"
+  echo "(click 'Use this template' on GitHub first if you haven't) and are"
+  echo "running this script from inside that clone."
+  exit 1
+fi
+
 ENV_FILE="docker/.env"
 if [ ! -f "$ENV_FILE" ]; then
-  echo "First-time setup — a few quick questions."
+  echo "First-time setup — a couple quick questions."
   echo
-  echo "If you haven't already: click 'Use this template' at the top of this"
-  echo "repo's GitHub page to get your own copy, then come back here with its URL."
-  echo
-  read -r -p "Your forked repo's clone URL (e.g. https://github.com/you/rogue-runner-kit.git): " FORK_URL
   read -r -p "Your name (used for git commits in your own repo): " GIT_NAME
   read -r -p "Your email (used for git commits): " GIT_EMAIL
 
   {
-    echo "ROGUE_RUNNER_FORK_URL=$FORK_URL"
     echo "GIT_USER_NAME=$GIT_NAME"
     echo "GIT_USER_EMAIL=$GIT_EMAIL"
   } > "$ENV_FILE"

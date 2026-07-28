@@ -120,10 +120,15 @@ a genuinely new session (see step 3).
 Check whether `specs/resources/` (any filename containing "PACE" or
 matching `*.xlsx`, case-insensitive) exists. This is Rogue Running's own
 pace-chart document — not something this repo ships, since it isn't ours to
-redistribute. If missing, tell the user to save their own copy (the one
-they already have access to as a Rogue Running member) to
-`specs/resources/` and pause here until it's present — `extract-workouts`
-can't resolve paces without it.
+redistribute.
+
+If missing, tell the user: `specs/resources/` is a normal folder in the
+repo they cloned onto their own computer (this container's copy is a
+direct bind mount of that same folder, not a separate copy) — they can
+just save or drag their own pace-chart file (the one they already have
+access to as a Rogue Running member) straight into it from Finder/File
+Explorer, no git or terminal commands needed. Pause here until it's
+present — `extract-workouts` can't resolve paces without it.
 
 ## Step 7 — Summary
 
