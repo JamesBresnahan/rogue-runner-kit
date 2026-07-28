@@ -29,8 +29,12 @@ Do this before anything else. The `garmin` MCP server is registered via
      token itself is likely dead (garth tokens last ~6 months). Tell the user
      to re-run authentication themselves:
      ```
-     uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp garmin-mcp-auth
+     GARMINTOKENS=/run/secrets/tokens/garmin_oauth_tokens \
+     GARMINTOKENS_BASE64=/run/secrets/tokens/garmin_oauth_tokens_base64 \
+     uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp --with "mcp<2" garmin-mcp-auth --force-reauth
      ```
+     (see `first-run-setup` Step 5 for why the env vars and `--with` pin are
+     there.)
      Do not ask the user to paste their Garmin email/password into the chat —
      that command prompts for credentials locally and they stay out of this
      conversation entirely, per the credential-handling rules in the global
@@ -64,6 +68,26 @@ If the input is incomplete or a segment's pace/distance/time is ambiguous,
 ask rather than inventing numbers — this applies whether a human is
 driving interactively or the input came from somewhere else and is missing
 a field.
+
+## Handling multiple workouts at once
+
+Steps 2-4 are per-workout and independent of each other (checking, building,
+and uploading one workout doesn't depend on any other workout in the same
+batch). When asked to build more than one workout at once (e.g. a full
+week's worth), prefer spinning up parallel sub-agents — one per workout —
+to run Steps 2-4, rather than building them one at a time in one thread.
+
+**Cap concurrency on anything calling the `garmin` MCP** to avoid tripping
+its rate limiting (see Step 1's 429 handling) — don't fan out one agent per
+workout unboundedly. A handful at once (a typical week) is fine; throttle
+if there are more. Once every workout in the batch has a `workout_id`,
+scheduling (Step 5) is a single batched call (`schedule_workouts`/
+`schedule_week`) — don't parallelize that part, just the per-workout
+build/upload work beforehand.
+
+A single workout, or a small batch, is fine to just build inline — this is
+about avoiding serial work once there's real per-workout-parallel work to
+do, not a blanket rule to always spin up agents.
 
 ## Step 3 — Check for an existing workout first
 

@@ -17,6 +17,15 @@ load_secrets_dir() {
 load_secrets_dir /run/secrets/static
 load_secrets_dir /run/secrets/tokens
 
+# garmin-mcp-auth (run manually, see README "Garmin login") and the garmin
+# MCP server both write into GARMINTOKENS, but neither one reliably creates
+# that subdirectory itself. Pre-create it once here, at container boot,
+# rather than relying on the auth tool or a manual step in a second
+# terminal to do it — this only runs once per container start, well before
+# the user ever gets a shell.
+mkdir -p /run/secrets/tokens/garmin_oauth_tokens
+chmod 700 /run/secrets/tokens/garmin_oauth_tokens
+
 if [ -n "${GITHUB_PAT:-}" ]; then
   git config --global credential.helper store
   echo "https://x-access-token:${GITHUB_PAT}@github.com" > "$HOME/.git-credentials"
@@ -28,7 +37,7 @@ if [ -n "${GITHUB_PAT:-}" ]; then
   # provision here. Rewrite them to HTTPS transparently so every remote uses
   # the PAT, without ever editing an individual repo's own git config.
   git config --global url."https://github.com/".insteadOf "git@github.com:"
-  git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
+  git config --global --add url."https://github.com/".insteadOf "ssh://git@github.com/"
 fi
 
 if [ -n "${GIT_USER_NAME:-}" ]; then
@@ -61,18 +70,35 @@ fi
 
 # Register the garmin MCP server once, idempotently (remove then re-add so
 # re-running this never leaves a stale duplicate registration). User scope
-# so it lives in the persisted home volume, not committed to the repo.
+# so the *registration* lives in the persisted home volume — the actual
+# OAuth tokens do not: GARMINTOKENS/GARMINTOKENS_BASE64 below point
+# garmin_mcp at the host-backed /run/secrets/tokens bind mount instead of
+# its own default (~/.garminconnect, inside the container-managed
+# rogue-runner-agent-home volume), so a re-auth's tokens survive
+# `docker volume rm`/`docker compose down -v` like every other credential
+# in this repo. first-run-setup Step 5 and creating-garmin-workout use the
+# same env vars when telling the user to run garmin-mcp-auth themselves.
 if command -v claude >/dev/null 2>&1; then
   claude mcp remove garmin -s user >/dev/null 2>&1 || true
-  claude mcp add garmin -s user -- uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp garmin-mcp \
+  # --with "mcp<2" pins the mcp SDK below the mcp==2.0.0 release, which
+  # dropped mcp.server.fastmcp and breaks garmin_mcp (pins mcp>=1.28.1 with
+  # no upper bound) — without this pin, uvx resolves the latest mcp and the
+  # server fails to import (ModuleNotFoundError: mcp.server.fastmcp).
+  claude mcp add garmin -s user \
+    -e GARMINTOKENS=/run/secrets/tokens/garmin_oauth_tokens \
+    -e GARMINTOKENS_BASE64=/run/secrets/tokens/garmin_oauth_tokens_base64 \
+    -- uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp --with "mcp<2" garmin-mcp \
     >/dev/null 2>&1 || echo "warning: failed to register garmin MCP server" >&2
 
   # Same pattern for the weather MCP server (cmer81/open-meteo-mcp, npm
   # package open-meteo-mcp-server). Open-Meteo's archive API is free and
   # keyless, so unlike garmin there's no separate auth step — registration
   # alone is enough. Base image is node:22-slim, so npx is already present.
+  # Use --package= rather than -p: `claude mcp add`'s own arg parser treats
+  # a bare -p in the trailing args as a global flag and fails with "unknown
+  # option '-s'".
   claude mcp remove weather -s user >/dev/null 2>&1 || true
-  claude mcp add weather -s user -- npx -y -p open-meteo-mcp-server open-meteo-mcp-server \
+  claude mcp add weather -s user -- npx -y --package=open-meteo-mcp-server open-meteo-mcp-server \
     >/dev/null 2>&1 || echo "warning: failed to register weather MCP server" >&2
 fi
 

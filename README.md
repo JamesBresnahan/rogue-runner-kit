@@ -80,8 +80,17 @@ code directly, and those should never be typed into the chat.
    ```
 2. Inside that shell, run:
    ```
-   uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp garmin-mcp-auth
+   GARMINTOKENS=/run/secrets/tokens/garmin_oauth_tokens \
+   GARMINTOKENS_BASE64=/run/secrets/tokens/garmin_oauth_tokens_base64 \
+   uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp --with "mcp<2" garmin-mcp-auth
    ```
+   The `GARMINTOKENS`/`GARMINTOKENS_BASE64` env vars save the login to the
+   host-backed `/run/secrets/tokens` folder (so it survives a
+   `docker volume rm`/`docker compose down -v` like every other credential
+   in this repo) instead of `garmin_mcp`'s own default, container-only
+   storage. `--with "mcp<2"` works around an upstream bug in `garmin_mcp`
+   that otherwise crashes this command before it can prompt for your
+   credentials.
 3. It'll prompt for your Garmin email, password, and MFA code (if you have
    2FA on) right there in that terminal.
 4. MCP connections are only made when a session starts, so this won't take

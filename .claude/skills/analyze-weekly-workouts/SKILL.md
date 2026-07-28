@@ -69,6 +69,24 @@ distinguishes (per `extract-workouts` Step 3's classification):
 - **Off days** — nothing planned; skip entirely, don't look for an
   activity.
 
+## Parallelizing across multiple days
+
+Steps 4-6 repeat per planned running day and are independent of each other
+(each day's activity match, split pull, and weather lookup don't depend on
+any other day's). When a week has more than one day left to process,
+prefer spinning up parallel sub-agents — one per day — to do Steps 4-6,
+rather than working through every day serially in one thread.
+
+**Cap concurrency on anything calling the `garmin` MCP** to avoid tripping
+its rate limiting (see Step 1's 429 handling) — don't fan out one agent per
+day unboundedly. A handful of days at once (a typical week) is fine; throttle
+if there are more. The `weather` MCP call in Step 6 isn't Garmin-backed and
+isn't a concern here.
+
+A single day or an already-mostly-analyzed week (one or two days left) is
+fine to just do inline — this is about avoiding serial work once there's
+real day-parallel work to do, not a blanket rule to always spin up agents.
+
 ## Step 4 — Match each planned running day to a completed activity
 
 For each planned running day, first compare its date to today's date:

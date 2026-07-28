@@ -99,8 +99,23 @@ a genuinely new session (see step 3).
    `docker compose exec claude-agent bash` from the repo's `docker/`
    directory on their host — and run, in that second terminal themselves:
    ```
-   uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp garmin-mcp-auth
+   GARMINTOKENS=/run/secrets/tokens/garmin_oauth_tokens \
+   GARMINTOKENS_BASE64=/run/secrets/tokens/garmin_oauth_tokens_base64 \
+   uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp --with "mcp<2" garmin-mcp-auth
    ```
+   The `GARMINTOKENS`/`GARMINTOKENS_BASE64` env vars point the login at the
+   host-backed `/run/secrets/tokens` bind mount instead of `garmin_mcp`'s
+   own default (`~/.garminconnect`, inside the container-managed
+   `rogue-runner-agent-home` volume) — otherwise the resulting tokens
+   wouldn't survive `docker volume rm`/`docker compose down -v` or a move
+   to a different machine the way every other credential in this repo
+   does. `--with "mcp<2"` works around an upstream bug: `garmin_mcp` pins
+   `mcp>=1.28.1` with no upper bound, and the `mcp` package's `2.0.0`
+   release dropped the module it imports (`mcp.server.fastmcp`), so
+   without the pin this command crashes with
+   `ModuleNotFoundError: No module named 'mcp.server.fastmcp'` before it
+   ever prompts for credentials.
+
    This prompts for their Garmin email/password interactively in that
    terminal — never paste Garmin credentials into this conversation, and
    don't run this command via a Bash tool call yourself, since both would
