@@ -83,17 +83,21 @@ with a less obvious error.
 
 ## Step 5 — Garmin Connect
 
-1. Confirm the `garmin` MCP tools are loaded this session (look for
-   `get_full_name`, `get_workouts`, `create_run_workout`). If they're not
-   loaded at all, something went wrong in container setup — tell the user
-   to re-run `setup.sh`.
-2. Call `get_full_name`. A successful response with a name means Garmin is
-   already authenticated — skip to Step 6.
-3. If it fails (no cached session yet, which is expected the very first
-   time), tell the user to open a **second terminal** into this same
-   running container — `docker compose exec claude-agent bash` from the
-   repo's `docker/` directory on their host — and run, in that second
-   terminal themselves:
+The `garmin` MCP server needs a cached login session to start at all — with
+no session yet, it fails to even connect, so its tools (`get_full_name`,
+`get_workouts`, `create_run_workout`) won't be loaded this session, not even
+as deferred tools. **That's the expected state before the very first Garmin
+login below, not a sign container setup is broken** — only treat it as a
+setup problem if it's still missing after completing the login and starting
+a genuinely new session (see step 3).
+
+1. If the `garmin` tools ARE loaded, call `get_full_name`. A successful
+   response with a name means Garmin is already authenticated — skip to
+   Step 6.
+2. If the tools aren't loaded at all, or `get_full_name` errors, tell the
+   user to open a **second terminal** into this same running container —
+   `docker compose exec claude-agent bash` from the repo's `docker/`
+   directory on their host — and run, in that second terminal themselves:
    ```
    uvx --python 3.12 --from git+https://github.com/Taxuspt/garmin_mcp garmin-mcp-auth
    ```
@@ -102,7 +106,14 @@ with a less obvious error.
    don't run this command via a Bash tool call yourself, since both would
    route the password through this session instead of staying local to the
    user's own terminal.
-4. Once the user confirms they've completed it, retry `get_full_name`.
+3. MCP servers only connect at session start, so completing the login above
+   will **not** make the tools appear in this same running conversation —
+   retrying `get_full_name` here won't work. Once the user confirms they've
+   finished the login, tell them to exit this session and run `./setup.sh`
+   again to start a fresh one (the cached login persists in the container's
+   own storage across restarts, so this login step only has to happen
+   once), then continue this checklist there and confirm `get_full_name`
+   succeeds in that new session.
 
 ## Step 6 — Pace chart on file
 
