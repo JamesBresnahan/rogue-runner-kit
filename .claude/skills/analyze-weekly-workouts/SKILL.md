@@ -118,13 +118,18 @@ to that single day) filtered to running.
 ## Step 5 — Pull actual data
 
 - **Easy/recovery days**: `get_activity(activity_id)` is enough — overall
-  `distance_meters`, `duration_seconds`, `avg_speed_mps`, `avg_hr_bpm`.
+  `distance_meters`, `duration_seconds`, `avg_speed_mps`, `avg_hr_bpm`,
+  `max_hr_bpm`, `elevation_gain_meters`, `elevation_loss_meters`. Also pull
+  `get_activity_splits(activity_id)` for per-mile `avg_hr_bpm`,
+  `elevation_gain_meters`, `elevation_loss_meters` — needed for the
+  terrain/HR-trend check in Step 7, not just the Hadley lat/lon lookup.
 - **Workout days**: call `get_activity_typed_splits(activity_id)`. For a
   workout completed as built, this returns phase-tagged splits in
   chronological order — confirmed types: `INTERVAL_WARMUP`,
   `INTERVAL_ACTIVE` (one per main-set rep), `INTERVAL_RECOVERY` (one per
   recovery jog), `INTERVAL_COOLDOWN` — each with its own `distance`,
-  `duration`, `averageSpeed` (m/s), `averageHR`/`maxHR`.
+  `duration`, `averageSpeed` (m/s), `averageHR`/`maxHR`, `elevationGain`,
+  `elevationLoss`.
   - Map `INTERVAL_ACTIVE` splits to planned main-set reps **in order**. For
     an alternating-pace plan (e.g. odd reps @ MP, even reps @ HM), rep *N*
     from Step 3's spec maps to the *N*th `INTERVAL_ACTIVE` split.
@@ -139,6 +144,18 @@ to that single day) filtered to running.
     or the device didn't tag it), fall back to `get_activity_splits`
     (auto-lap km/mile splits) for a best-effort comparison, and say in the
     report that the phase-level match is approximate rather than exact.
+  - When a single typed split covers more than one planned pace segment
+    (e.g. Garmin recorded "2mi @ MP then 2mi @ MP+30-40s" as one merged
+    `INTERVAL_ACTIVE` block instead of two), fall back to
+    `get_activity_splits`'s per-mile/per-lap laps and use their
+    `workout_step_index` field (when present) to split the block back into
+    its planned sub-segments — don't just report the merged block's single
+    average pace as if it were one planned segment.
+  - `get_activity_splits`' per-lap `elevation_gain_meters`/
+    `elevation_loss_meters` and `avg_hr_bpm` (finer-grained than the
+    typed-split phase totals) are what Step 7's terrain/HR check needs —
+    pull them for any workout day with more than one rep/mile in a phase,
+    not just to patch a merged-split case.
 
 ## Step 6 — Pull weather and compute the Hadley score
 
@@ -172,15 +189,40 @@ speed_mps` = seconds per mile, format `M:SS`. For each planned segment
 
 - Planned pace (or range) vs. actual pace, and the delta.
 - Planned distance/duration (end condition) vs. actual distance/duration.
-- Carry `averageHR`/`maxHR` through as supporting context where available
-  — not the primary comparison, but useful for judging effort vs. pace
-  (e.g. a rep hit pace but at a much higher HR than the rest).
 - Where Step 6 produced a Hadley-score range for that day, note the
   expected heat-driven pace-adjustment band alongside the observed
   planned-vs-actual delta (per `references/hadley-score.md`'s "Computing
   and reporting" section) — framed as a plausible contributing factor, not
   a definitive explanation; fatigue, terrain, and effort are still in
   play.
+
+**Terrain and HR — use both to judge *why* a pace missed, not just *that* it missed:**
+
+- **Terrain**: for any segment with more than one rep/mile, compute net
+  elevation change (`elevationGain - elevationLoss`) as a % of that
+  rep/mile's distance, and check whether the worst-paced reps/miles are
+  also the most uphill ones (and the best-paced ones the most downhill).
+  A pace miss that lines up with grade is terrain, not fitness — don't let
+  a hilly mile read as an unexplained slowdown.
+- **HR as a fitness-ceiling check**: compare the segment's avg/max HR
+  against the runner's known effort ceiling for that kind of work (e.g.
+  a day this runner *did* hit a given target pace, if one exists earlier
+  in the same week — see Tuesday-vs-Thursday in this file's own history
+  for the pattern) and against `workout_feel`/`workout_rpe` from
+  `get_activity` if present (Borg CR10 ×10, so `70` = RPE 7/10). If HR and
+  RPE both show headroom — well under a comparable hit-target day, RPE
+  rated no higher than a session that succeeded — a pace miss reads as
+  terrain/heat/pacing-execution, not a fitness limiter: say so plainly
+  rather than defaulting to "fatigue" as the explanation. If HR is pinned
+  near max and RPE is high, that's the opposite signal — the runner
+  likely didn't have more to give that day.
+- **Within-run HR trend distinguishes fatigue from an intentional ease**:
+  HR climbing while pace slows across a segment reads as fatigue forcing
+  the slowdown. HR *dropping* while pace slows (e.g. the closing mile of a
+  long run) more often reads as the runner consciously backing off, not
+  losing the ability to hold pace — don't default to "fatigue" for every
+  late-run fade without checking which pattern the HR trend actually
+  shows.
 
 Also roll up a weekly total: planned weekly mileage vs. actual completed
 mileage so far (both missed and not-yet-run days count as 0 actual, but
