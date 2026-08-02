@@ -143,13 +143,17 @@ runs, so favor short factual lines over prose paragraphs.
 
 ## Step 5 — Check for patterns (only once there's enough data)
 
-**Gate first.** Count the distinct workout-days referenced across *every*
-check-in in the *entire* log (all episodes combined, not just this one).
-If that count is **fewer than 3 distinct workout-days**, stop here — don't
-attempt correlation. Say plainly in Step 6 that this is logged but there
-isn't enough tracking history yet to say anything about causes, and
-roughly how much more it'd take (a couple more check-ins tied to
-different workouts).
+**Gate first.** Count the distinct **check-ins** (dated reports the user
+actually made) across the *entire* log, all episodes combined — not the
+workout-context days mentioned inside them. A single report that happens
+to reference several nearby days (onset day, day before, a worse day
+later that same week) is still one check-in, not several — don't let
+richly-detailed context from one report satisfy the gate on its own. If
+there are **fewer than 3 distinct check-ins**, stop here — don't attempt
+correlation. Say plainly in Step 6 that this is logged but there isn't
+enough tracking history yet to say anything about causes, and roughly how
+much more it'd take (a couple more check-ins, ideally tied to different
+workouts).
 
 Once the gate is cleared, check the new entry against the full log:
 
