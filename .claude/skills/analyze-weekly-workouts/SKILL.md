@@ -1,6 +1,6 @@
 ---
 name: analyze-weekly-workouts
-description: Use when the user wants to review how a week of training actually went against the plan — a completed week or one still in progress (e.g. "how did last week go", "how's this week looking so far", "analyze my training", "compare planned vs actual pace", "was the heat a factor"). Reads the confirmed spec from specs/weekly-workouts/, downloads the matching completed activities via the garmin MCP server, pulls hourly temperature/dew point via the weather MCP server to compute a Hadley heat-stress score for each run, shows a planned-vs-actual comparison, and asks before saving it to data/weekly-workouts/ in git.
+description: Use when the user wants to review how a week of training actually went against the plan — a completed week or one still in progress (e.g. "how did last week go", "how's this week looking so far", "analyze my training", "compare planned vs actual pace", "was the heat a factor"). Reads the confirmed spec from specs/weekly-workouts/, downloads the matching completed activities via the garmin MCP server, pulls hourly temperature/dew point via the weather MCP server to compute a Hadley heat-stress score for each run, shows a planned-vs-actual comparison, and asks before saving it to data/weekly-workouts/ in git. If the user reports pain, soreness, or an injury at any point during this analysis, invoke `track-injury` for that report rather than just noting it.
 ---
 
 # Analyzing a completed week's workouts
@@ -16,6 +16,12 @@ heat stress via the Hadley score (see
 This skill only reads from Garmin (activities, splits) and weather
 history — it never builds, schedules, or modifies a workout. That's
 `creating-garmin-workout`'s job, and is a separate concern.
+
+If, at any point during this analysis, the user reports pain, soreness, or
+an injury connected to a day being analyzed, invoke `track-injury` for
+that report — hand it whatever activity/spec/terrain/HR data this session
+already pulled for the relevant day(s) rather than making it re-fetch, and
+resume this skill's own analysis afterward once that's logged.
 
 ## Step 1 — Validate the MCP connections
 
