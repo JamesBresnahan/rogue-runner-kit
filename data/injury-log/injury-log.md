@@ -29,3 +29,8 @@ that skill's "Scope boundary" for what this file is and isn't used for.
 - 2026-08-02: severity 2-3/10 (worst on 07/29-07/30 per above, "slightly
   better to about the same" as it was on Monday's onset by today) — no
   worsening over the six days since onset.
+- 2026-08-04: about the same as 08/02 (still ~2-3/10) — proactively
+  cross-training instead of running: swapped Mon 08/03 (planned 6mi easy
+  run) and Tue 08/04 (planned "08/04 Medium-Long w/ Pickups", 10mi) for
+  easy bike rides instead — Mon 9.82km @ avg HR 104, Tue 19.89km @ avg HR
+  117. No running activity either day.
