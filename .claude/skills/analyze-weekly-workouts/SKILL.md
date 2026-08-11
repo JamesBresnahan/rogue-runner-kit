@@ -202,6 +202,17 @@ speed_mps` = seconds per mile, format `M:SS`. For each planned segment
   a definitive explanation; fatigue, terrain, and effort are still in
   play.
 
+**Warm-up pace doesn't drive the overall verdict**: a warm-up segment is
+expected to run slower than its nominal target while the runner's legs and
+HR settle in — still report its planned-vs-actual delta for completeness
+(and check it for terrain/HR the same as any other segment), but don't let
+a slow warm-up pull the day's overall read toward "missed" or "struggled."
+Judge the day's overall success primarily on whether the main set (the
+part actually training the target adaptation) hit its target paces. A day
+with a slow warm-up mile and a main set that hit target reads as a
+**successful workout**, full stop — say so plainly rather than hedging
+because one early, expected-to-be-slow segment came in under pace.
+
 **Terrain and HR — use both to judge *why* a pace missed, not just *that* it missed:**
 
 - **Terrain**: for any segment with more than one rep/mile, compute net
