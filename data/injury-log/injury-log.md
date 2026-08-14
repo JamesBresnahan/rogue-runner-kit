@@ -48,3 +48,13 @@ that skill's "Scope boundary" for what this file is and isn't used for.
   even the loosest end of the planned range is fully explained by heat, not
   a leg-related limiter. Today's scheduled quality workout (08/11/2026,
   16×300 @ 5K) not yet run as of this check-in.
+- 2026-08-13: Improving — severity now ~0-2/10 on runs (down from the
+  steady ~2-3/10 since onset), "much less noticeable" per the user, who
+  also reports feeling stronger and faster. Started daily nerve glides and
+  calf raises since Tuesday (08/11) — new self-directed rehab work, not
+  verified/prescribed by this skill. Workouts since last check-in: Tue
+  08/11 quality run (16×300 @ 5K, hit target pace almost exactly, feel
+  100/RPE 5) and Thu 08/13 medium-long run (10.58mi, main set 7:14/mi
+  within the 6:30-7:29/mi EZ range, feel 75/RPE 4) — both harder-than-easy
+  efforts completed without apparent pain-related limitation, unlike the
+  07/30 pickups session that marked this episode's worst days.
