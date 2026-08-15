@@ -221,6 +221,26 @@ because one early, expected-to-be-slow segment came in under pace.
   also the most uphill ones (and the best-paced ones the most downhill).
   A pace miss that lines up with grade is terrain, not fitness — don't let
   a hilly mile read as an unexplained slowdown.
+  - Also compute **total climb** (`elevationGain + elevationLoss`) per
+    rep/mile, not just net change — on a rolling route, net change alone
+    can read a mile as "flat" or "downhill" while it still contains real
+    climbing that happened to cancel out. Before calling a slow rep/mile
+    fatigue-only because its net grade looks flat or favorable, check its
+    total climb too; a high-total-climb mile is a terrain explanation even
+    at ~0% net. Route character determines which metric leads — a route
+    with a steady directional grade (one climb, one descent) is well
+    explained by net change alone, while a route with oscillating rolling
+    hills needs total climb to catch what net change hides.
+  - **Total climb also belongs in the fitness read for the run as a
+    whole, not just the segment-level terrain-vs-fatigue check**: the
+    same pace and HR mean different things on a hilly run than on a flat
+    one — a target pace held at a normal HR/RPE over meaningful total
+    climb (pull `elevation_gain_meters` for the whole activity from
+    `get_activity`) is a *stronger* fitness signal than the identical
+    pace/HR on a flat route, and should be said so plainly in the day's
+    overall verdict, not left as a bare descriptive stat. This is a
+    single-run judgment call, not a week-over-week comparison — don't
+    extend it into comparing this week's total climb against other weeks'.
 - **HR as a fitness-ceiling check**: compare the segment's avg/max HR
   against the runner's known effort ceiling for that kind of work (e.g.
   a day this runner *did* hit a given target pace, if one exists earlier
