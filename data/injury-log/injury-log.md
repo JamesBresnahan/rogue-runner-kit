@@ -59,3 +59,22 @@ that skill's "Scope boundary" for what this file is and isn't used for.
   within the 6:30-7:29/mi EZ range, feel 75/RPE 4) — both harder-than-easy
   efforts completed without apparent pain-related limitation, unlike the
   07/30 pickups session that marked this episode's worst days.
+- 2026-08-19: Pain ~0-1/10 during Tuesday's (08/18) quality run itself
+  (5×2k @ HM + 4×200m @ 5K) — per the runner, about the same level as the
+  08/11 and 08/13 sessions (those check-ins didn't capture a specific
+  number at the time, just "no apparent pain-related limitation" — this
+  retroactively puts a number on that same baseline, not a change from
+  it). Refines the initial "feels fine" framing below (which was
+  specifically about the post-run strength session, not a rating of the
+  run itself). No pain reported since. Context: on 2026-08-18 (Tuesday),
+  after that morning's quality run (feel 75/RPE 5), did the normal
+  Tuesday leg strength session
+  in the afternoon/evening: supersets of 3×10 Bulgarian split squats
+  w/35lb dumbbells each arm + 3×30 pushups; 3×10 single-leg Romanian
+  deadlifts w/25lb dumbbells each arm + 3×10 bicep curls 25lb; then 3×10
+  slow/controlled single-leg calf raises at bodyweight. This is a routine
+  session the runner almost always does on Tuesdays, not a new addition.
+  Several of these exercises (Bulgarian split squats, single-leg RDLs,
+  single-leg calf raises) load the Achilles/calf directly, and this was
+  stacked on the same day as a hard quality run — a real load test for
+  the area — with no adverse reaction reported since.
