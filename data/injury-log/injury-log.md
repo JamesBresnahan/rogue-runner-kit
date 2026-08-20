@@ -78,3 +78,33 @@ that skill's "Scope boundary" for what this file is and isn't used for.
   single-leg calf raises) load the Achilles/calf directly, and this was
   stacked on the same day as a hard quality run — a real load test for
   the area — with no adverse reaction reported since.
+- 2026-08-20: Pain ~1.5/10 during mile 1 of Thursday's medium-long run
+  w/ pickups, then resolved and didn't return for the rest of the run —
+  consistent with the low-level baseline (0-2/10) since 08/13. Workout
+  context: 11.01mi medium-long run w/ pickups, avg HR 153/max 186, feel
+  25 ("Bad")/RPE 6 (a harder-feeling session than Tuesday's 08/18 quality
+  run) — no indication the Achilles/nerve issue was a limiting factor
+  despite the harder-than-usual effort.
+
+## Episode: Left outside lower knee — opened 2026-08-20 (status: open)
+
+- **Onset**: 2026-08-20 (Thursday) — reported same day.
+- **Onset-day workout**: 2026-08-20 (Thu), medium-long run w/ pickups,
+  11.01mi. Main-set 9×90" pickups all ran faster than the 6:10/mi HM
+  target (avg ~5:58/mi), HR climbing steadily to a peak of 186, feel 25
+  ("Bad")/RPE 6 — a notably harder-feeling session than Tuesday's 08/18
+  quality run (feel 75/RPE 5). Pain did not occur during the run itself —
+  it flared up after finishing, while sitting in the car, then during a
+  ~10min walk afterward. Has since settled into a normal sore "niggle."
+- **Day before onset**: 2026-08-19 (Wed), off/no run (per this week's
+  spec).
+- **Two days before onset**: 2026-08-18 (Tue), quality run — 5×2k @ HM
+  6:10/mi + 4×200m @ 5K 5:37/mi, 11.01mi, feel 75/RPE 5 — a hard,
+  well-executed session with no pain reported at the time.
+
+### Check-ins
+- 2026-08-20: New report. Post-run onset (not during the run) — flared
+  while sitting in the car after finishing, then during a ~10min walk;
+  settled into an ordinary sore niggle since. Severity not numbered by
+  the runner; described as "nagging," not currently a concern, but
+  something to watch.
