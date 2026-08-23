@@ -108,3 +108,23 @@ that skill's "Scope boundary" for what this file is and isn't used for.
   settled into an ordinary sore niggle since. Severity not numbered by
   the runner; described as "nagging," not currently a concern, but
   something to watch.
+- 2026-08-23: Follow-up. Fairly persistent, not intermittent — present
+  at a steady ~2-3/10 baseline during runs on every day since onset,
+  including Saturday and Sunday ("held up ok" means it didn't worsen
+  past that baseline, not that it was absent). Worst days were Thursday
+  08/20 (onset day) and Friday 08/21, peaking around 4/10 both days —
+  notable that Friday's peak came on a light effort day (2.99mi @
+  8:14/mi, avg HR 127/max 142; planned 4mi @ Recovery Runs
+  7:43-8:27/mi), not a hard session. Saturday 08/22 (4.99mi @ 8:20/mi,
+  avg HR 140/max 154 — doesn't cleanly match either the planned Sat
+  20mi long run or the planned Sun 4mi recovery; schedule appears to
+  have shifted, see below) stayed at the ~2-3/10 baseline. Today,
+  Sunday 08/23, also stayed at ~2-3/10, easing toward the lower end of
+  that range after ~4-5mi rather than going away. Today's run
+  (32204m/20.01mi, avg pace 7:32/mi, avg HR 147/max 168, feel 50/RPE 9)
+  is the week's planned Saturday 20mi long run w/ Columbus MP workout,
+  run one day late — logged in Garmin as "Austin - 08/22/2026" but
+  started 2026-08-23 06:04am local. No acute worsening on this long run
+  despite it being the week's biggest effort and volume test, but the
+  persistent baseline itself is the more notable thread across all four
+  days.
