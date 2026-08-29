@@ -85,6 +85,27 @@ that skill's "Scope boundary" for what this file is and isn't used for.
   25 ("Bad")/RPE 6 (a harder-feeling session than Tuesday's 08/18 quality
   run) — no indication the Achilles/nerve issue was a limiting factor
   despite the harder-than-usual effort.
+- 2026-08-23: Pretty much a non-factor Saturday 08/22 and today, Sunday
+  08/23 — the best stretch since the 07/27 onset. One brief exception on
+  today's run: a slight pain directly above the Achilles/below the calf
+  when pushing hard up a hill around mile 13, lasting only a few strides
+  before resolving. Workout context: today's run was the week's planned
+  Saturday 20mi long run w/ Columbus MP workout, run one day late (see
+  the knee episode's 08/23 check-in for the same day-shift note). Mile
+  13 falls inside this run's 4mi marathon-pace main-set segment (miles
+  ~11.65-15.65, avg HR 159/max 168 — the run's overall HR peak) rather
+  than the easy warm-up/cool-down — consistent with the pain surfacing
+  specifically under a hard effort, not just from cumulative mileage.
+- 2026-08-29: Improving further — essentially a non-factor all week
+  (week of 08/24), maxing out around 1/10 if anything, per the runner.
+  This is the best stretch of the whole episode, continuing the trend
+  from 08/23. Workout context: a genuinely hard week including Tue 08/25
+  medium-long w/ pickups (10.01mi, 8×2' MP reps), Thu 08/27 quality run
+  (11.27mi, 3mi MP block + 2×1mi HM + 2×800m 10K, HR up to 181, Feel
+  100/RPE 4 — hardest session of the cycle so far), and Sat 08/29 22mi
+  long run (7:51/mi avg, negative split, HR up to 162) — no pain-related
+  limitation reported on any of these despite the week's overall
+  difficulty.
 
 ## Episode: Left outside lower knee — opened 2026-08-20 (status: open)
 
@@ -128,3 +149,11 @@ that skill's "Scope boundary" for what this file is and isn't used for.
   despite it being the week's biggest effort and volume test, but the
   persistent baseline itself is the more notable thread across all four
   days.
+- 2026-08-29: Clear improvement — down to ~0-1/10 on most runs this week
+  (week of 08/24), maxing out at 2/10, a step down from the persistent
+  2-3/10 baseline (peaking at 4/10) reported on 08/23. First real
+  improvement since onset on 08/20. Workout context: same hard week as
+  the Achilles episode's 08/29 check-in above (Tue medium-long w/
+  pickups, Thu's hardest-of-cycle quality run, Sat's 22mi negative-split
+  long run) — improvement held through the week's biggest volume and
+  intensity test, not just on easy days.
