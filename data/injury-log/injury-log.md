@@ -106,6 +106,38 @@ that skill's "Scope boundary" for what this file is and isn't used for.
   long run (7:51/mi avg, negative split, HR up to 162) — no pain-related
   limitation reported on any of these despite the week's overall
   difficulty.
+- 2026-09-01: Plateaued around 1/10 on runs generally — continuing the
+  low-level baseline from 08/29, not a further improvement but not a
+  setback either. New pattern noticed by the runner: easy runs over 5mi
+  seem to flare it a bit more later in the run. Runner's own hypothesis:
+  possibly shoe-related, specifically the Asics Gel Nimbus 28 (their
+  stated shoe for recovery/easy days) — self-reported theory, not
+  verified. Nearest workout matching the >5mi pattern: Mon 08/31 easy
+  run, 6.01mi @ 8:33/mi, avg HR 125/max 140 (HR climbed mildly 120→129
+  through the run, slowest mile was mile 6 with a mild uphill) — no pain
+  was reported at the time that run was originally logged/analyzed; this
+  note came as a separate, later report referencing the pattern in
+  general rather than flagging that specific run's numbers.
+- 2026-09-03: Slightly worse than the 1/10 plateau — topped out around
+  2/10 toward the end of today's run. Second data point supporting the
+  >5mi/late-run pattern noted on 09-01: today's run was 8.76mi (over the
+  5mi threshold), and the flare came specifically toward the end,
+  matching the earlier report. Workout context: easy run, 8.76mi in
+  68:37, avg pace 7:50/mi, avg HR 140/max 168, real hilly terrain
+  (122.34m gain/121.42m loss), Hadley 155.8-156.0 (151-160 band). Pace
+  progressively warmed up from 8:48/mi to within-target by miles 6-7,
+  easing off in the final stretch which included the planned 5-6×100m
+  strides (max HR 168, max cadence 189 in that final segment) — the
+  flare's "toward the end" timing overlaps with both the longest
+  cumulative distance of the run and the strides segment, so either (or
+  both) could plausibly be involved, not just distance alone.
+  Shoe-confirmed: runner wore the **Boston 12** for this run, not the
+  Gel Nimbus 28 — a departure from the stated rotation (Nimbus for
+  easy/recovery days) but notable for the shoe hypothesis specifically:
+  today's flare happened in the Boston 12, the shoe the runner does
+  *not* suspect, which weakens rather than supports the Nimbus theory
+  from 09-01. Distance and/or the end-of-run strides now read as the
+  more plausible shared factor across both >5mi instances than shoe.
 
 ## Episode: Left outside lower knee — opened 2026-08-20 (status: open)
 
