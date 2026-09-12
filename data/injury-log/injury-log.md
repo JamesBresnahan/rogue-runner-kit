@@ -189,3 +189,37 @@ that skill's "Scope boundary" for what this file is and isn't used for.
   pickups, Thu's hardest-of-cycle quality run, Sat's 22mi negative-split
   long run) — improvement held through the week's biggest volume and
   intensity test, not just on easy days.
+
+## Episode: Left knee, front-middle — opened 2026-09-12 (status: open)
+
+- **Onset**: 2026-09-12 (Saturday) — reported same day. Distinct
+  location from the existing Left outside lower knee episode (that one
+  is lateral/outside; this is front-middle/anterior) — confirmed with
+  the runner as a different spot, not a continuation.
+- **Onset-day workout**: 2026-09-12 (Sat), Long run w/ MP progression
+  finish — planned 22mi (16mi easy + 2mi@MP+15" -> 2mi@MP+7" ->
+  2mi@MP), actual 21.01mi (cut ~1mi short, final MP segment
+  abandoned). Warm-up (16mi) averaged 7:45/mi (slow edge of target).
+  MP+15" (2mi) averaged 7:02/mi (18s/mi slow). MP+7" (2mi) averaged
+  7:10/mi with an in-segment fade (6:58 to 7:22/mi), HR pinned near max
+  (176 to 185). Final MP segment abandoned after ~1mi at 10:11/mi, HR
+  dropping 185 to 152 to 146. `workout_feel` 0 ("Very Bad"),
+  `workout_rpe` 90 (RPE 9/10) — the hardest-feeling day of the whole
+  training block so far. Entire run sat in the Hadley 151-160 heat band
+  (4.5-6.0% predicted slowdown) — hottest, most sustained heat of the
+  week.
+- **Day before onset**: 2026-09-11 (Fri), easy day — 6.01mi @ 8:24/mi,
+  avg HR 127. Unremarkable, no pain reported at the time.
+- **Two days before onset**: 2026-09-10 (Thu), medium-long run w/
+  pickups — 11.45mi, main set (10x90"@HM) averaged 6:05/mi (faster
+  than target), HR controlled 142-167bpm, feel 75 ("Good")/RPE 4. No
+  pain reported.
+
+### Check-ins
+- 2026-09-12: New report. Pain noticeable "in spurts" during the easy
+  16mi portion, then again at the start of the MP progression —
+  moderate, 4-6/10. Runner's own description: felt generally weak,
+  knee pain during portions of the run, heat was also a factor —
+  "didn't have it" that day. Coincides with the week's longest run,
+  hottest conditions, and the day's `workout_feel`/RPE reading as the
+  worst of the whole training block so far.
