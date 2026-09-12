@@ -223,3 +223,9 @@ that skill's "Scope boundary" for what this file is and isn't used for.
   "didn't have it" that day. Coincides with the week's longest run,
   hottest conditions, and the day's `workout_feel`/RPE reading as the
   worst of the whole training block so far.
+- 2026-09-12 (same-day clarification): knee was not a factor during the
+  MP segment itself — the pace fade/collapse there was pure fatigue
+  ("felt gassed"), not knee-driven. Narrows the knee's actual window to
+  the easy portion and the early MP transition; the harder back-half
+  breakdown (MP+7" fade, MP segment abandoned) reads as a fitness/fatigue
+  limiter on its own, independent of the knee.
