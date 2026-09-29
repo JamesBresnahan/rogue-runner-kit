@@ -229,3 +229,38 @@ that skill's "Scope boundary" for what this file is and isn't used for.
   the easy portion and the early MP transition; the harder back-half
   breakdown (MP+7" fade, MP segment abandoned) reads as a fitness/fatigue
   limiter on its own, independent of the knee.
+
+## Episode: Left knee, inner/back (posteromedial) — opened 2026-09-27 (status: open)
+
+- **Onset**: 2026-09-27 (Sunday) — right after finishing the run.
+  Distinct location from the existing "Left outside lower knee"
+  (lateral, opened 08-20) and "Left knee, front-middle" (anterior,
+  opened 09-12) episodes — this is posteromedial (inner-back), a third
+  distinct spot.
+- **Onset-day workout**: 2026-09-27 (Sun), final long run workout
+  (moved from Saturday), altitude-adjusted (+15s/mi) MP work in Teton
+  County, WY (~6,100ft), day 4 at elevation. 20.02mi total, avg HR 171
+  (max 195), `workout_feel` 25 ("Bad"), `workout_rpe` 80 (RPE 8/10) —
+  the week's hardest session by far. Pace execution nailed nearly every
+  altitude-adjusted target (several segments within 1-2s/mi of target)
+  but at very high physiological cost (near-max HR sustained for
+  extended stretches). No pain reported during the run itself or in
+  the immediate post-run write-up — this report surfaced 2 days later
+  (2026-09-29).
+- **Day(s) before onset**: 2026-09-26 (Sat), unplanned/extra easy run,
+  7.00mi @ 8:11/mi, avg HR 136 (max 152) — comfortable, notably lower
+  HR than the two days before it. 2026-09-25 (Fri), easy run, 6.04mi @
+  8:17/mi, avg HR 151 (max 172) — HR climbed steadily through the run
+  despite flat pace.
+
+### Check-ins
+- 2026-09-29: New report. Pain began right after Sunday's (09/27) run
+  finished. Dull/achy, inner-back (posteromedial) of the left knee. Can
+  walk and run normally on it, no swelling/warmth/redness reported —
+  but hurts specifically when bending the knee below 90°. No safety red
+  flags (no significant swelling, no inability to bear weight, no
+  sharp/sudden pain, no numbness).
+- 2026-09-29 (PT evaluation, same day): PT assessed it as likely sore
+  ligaments — cleared to run as normal provided pain stays manageable.
+  Professional assessment, not this skill's own — logged as reported,
+  not verified independently.
