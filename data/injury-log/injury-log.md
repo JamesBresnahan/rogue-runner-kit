@@ -264,3 +264,24 @@ that skill's "Scope boundary" for what this file is and isn't used for.
   ligaments — cleared to run as normal provided pain stays manageable.
   Professional assessment, not this skill's own — logged as reported,
   not verified independently.
+- 2026-10-01: Improving. Runner proactively took Wednesday 09/30 off
+  from running to rest the knee — did 35min indoor cycling instead
+  (avg HR 119) rather than the planned 4mi easy run. Then ran today's
+  (Thu 10/01) scheduled quality workout (8x1km @ MP/HM + 4x200 @ 5K,
+  9.13mi actual) with no pain during the run — only mild tenderness
+  afterward, max 1/10. Clear improvement from the 09-29 "sore
+  ligaments" check-in.
+- 2026-10-03: New flare, milder than 09-27's. Knee started bothering
+  the runner after mile 10 of today's 16-mile long run (Columbus Taper,
+  7:59/mi avg, avg HR 142, real heat and hills), maxing out ~2/10
+  during the run. Unlike 09-27, pain has **not** flared up post-run.
+  Coincided with overall bilateral leg fatigue in the final 2 miles —
+  matches this week's independently-noted pace fade at mile 15 (8:10/mi
+  vs. mile 14's 7:32/mi) and slower miles 16-17. Day before (Fri 10/02)
+  was a notably low-effort recovery run (5.01mi @ 8:41/mi, avg HR 127)
+  with no knee issues reported.
+- 2026-10-04: Further improvement — basically non-existent today,
+  maybe a 0.5/10 niggle at most. Day after Saturday's 16-mile long run
+  (the 2/10 flare); today was an easy 5.60mi recovery run (8:31/mi, avg
+  HR 138, flat/controlled effort). Continues the trend of this flare
+  being milder and faster-resolving than the original 09-27 episode.
