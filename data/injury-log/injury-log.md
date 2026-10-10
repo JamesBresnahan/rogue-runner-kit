@@ -285,3 +285,47 @@ that skill's "Scope boundary" for what this file is and isn't used for.
   (the 2/10 flare); today was an easy 5.60mi recovery run (8:31/mi, avg
   HR 138, flat/controlled effort). Continues the trend of this flare
   being milder and faster-resolving than the original 09-27 episode.
+- 2026-10-06: Still very mild — slight ache toward the end of today's
+  run, maxing out ~1/10. Essentially a continuation of the 10-04
+  near-zero level with a tiny uptick, not a new flare. Today's run:
+  Tuesday Medium Long Run w/ MP pickups, 8.40mi total (hillier-than-
+  usual 6.2mi warm-up + 4 MP reps), avg HR 129, workout_feel 75
+  ("Good"), workout_rpe 30 (RPE 3/10) — an easy-feeling day overall.
+  Day before (Mon 10/05) was a clean, unremarkable 5.00mi easy run with
+  no knee issues.
+- 2026-10-08: Mild uptick — flare during today's 4x400 @ 10K block
+  specifically, ~2/10, prompting the runner's coach to advise stopping
+  proactively (value already gained from completed reps, no need to
+  risk more) — runner stopped after 2 of 4 planned reps. Notably,
+  during the earlier 3x2km @ MP block in the same session, the knee was
+  barely noticeable (~1/10 max) — the flare was isolated to the
+  faster-turnover 400m/10K-pace portion, not the slower, more sustained
+  MP work. Today's run: Thursday Quality Run, 8.36mi total (9mi
+  planned, cut short per the coach's guidance), avg HR 143,
+  workout_feel 75 ("Good"), workout_rpe 20 (RPE 2/10 — lowest of the
+  cycle). Both completed MP reps and both completed 10K reps beat
+  target pace before the stop. Day before (Tue 10/06): see above.
+- 2026-10-09: Zero symptoms — a fully clean day, no knee issues at all.
+  Continues the improving trend following 10-08's mild 400m-specific
+  flare. Today's run: Friday easy recovery run, 4.29mi (4mi planned),
+  8:14/mi avg (within Recovery Runs target), avg HR 131 — clean,
+  controlled effort, notably run at an unusual midday time slot under
+  real warmth with no issue.
+- 2026-10-10: Knee felt more sensitive than usual through most of
+  today's 12-mile long run, ~2/10, but notably the **last 3 miles felt
+  the best of the run** (improving, not fading). Post-run: pain going
+  up and down stairs. Runner clarified (same day, follow-up note) this
+  stairs symptom is **not new** — it has accompanied prior days when
+  pain was at this same ~2/10 level too (e.g. 09-27, 10-03), it just
+  wasn't explicitly mentioned in those check-ins. Revised read: stairs
+  pain appears to correlate with the ~2/10 severity band itself, not a
+  distinct escalating symptom — recurring at a known level, not new
+  territory. Safety check: does not meet hard red-flag criteria (can
+  bear weight, no sudden/sharp pain, no swelling or numbness
+  reported). Today's run: Saturday long run, 12.01mi (12mi planned),
+  avg pace 7:34/mi (every full mile within/near the Long Runs: Range
+  target), avg HR 136 — a clean, well-executed long run on paper, no
+  heat factor. Day before (Fri 10/09): clean, zero knee symptoms.
+- 2026-10-10 (same-day update): Stair pain subsided within ~3 hours
+  post-run — stairs now pain-free. Quick resolution, consistent with
+  how this same ~2/10 presentation has resolved before.
