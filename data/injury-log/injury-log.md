@@ -329,3 +329,19 @@ that skill's "Scope boundary" for what this file is and isn't used for.
 - 2026-10-10 (same-day update): Stair pain subsided within ~3 hours
   post-run — stairs now pain-free. Quick resolution, consistent with
   how this same ~2/10 presentation has resolved before.
+- 2026-10-11: **New pattern — flare with no running involved.** Knee
+  soreness recurred last night (10/10 evening), well after the
+  same-day stair pain had already resolved, persisted through this
+  morning before today's run, and is now post-run still mildly tender
+  but improved from overnight. During today's run itself the knee felt
+  fine (~1/10 max). This is the first flare on this episode not tied
+  to a specific run — every prior instance followed a workout directly.
+  Runner's own hypothesis (not verified/diagnosed): sitting with the
+  left ankle crossed over the right knee ("figure-4" position — hip
+  external rotation + knee flexion) shortly before the pain started
+  last night may have aggravated it. Today's run: Sunday easy run,
+  4.16mi (4mi planned), avg pace 8:26/mi (at the loose end of Recovery
+  Runs target), avg HR 132 (max 161 — notably higher than this
+  runner's typical easy-day max, though real heat today, Hadley 141.6,
+  plausibly explains some of that). Closes out the week-of-10-05
+  taper-2 spec.
